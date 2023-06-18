@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
-import com.example.orgs.ui.models.Cars
+import com.example.orgs.model.Cars
 
 class ListaCarrosAdapter(
     private val context: Context,
@@ -39,7 +39,7 @@ class ListaCarrosAdapter(
 
             name.text = car.name
             model.text = car.modelCar
-            value.text = car.value
+            value.text = car.price
 
         }
 

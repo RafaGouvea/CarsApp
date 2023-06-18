@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
 import com.example.orgs.ui.adapter.ListaCarrosAdapter
-import com.example.orgs.ui.models.Cars
+import com.example.orgs.model.Cars
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             Cars(
                 "Compass",
                 "Jeep",
-                "R$120.234,00"
+                "R$120.234,00",
             ),
         ))
         recycleView.layoutManager = LinearLayoutManager(this)
