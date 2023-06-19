@@ -14,7 +14,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_name"
+            android:id="@+id/inputLayoutName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -30,14 +30,14 @@
            >
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_model"
+            android:id="@+id/inputLayoutModel"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -45,20 +45,21 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_name"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutName"
             app:boxBackgroundMode="outline"
             android:textColorHint="@color/gray"
             android:hint="@string/model"
             app:boxStrokeColor="@color/purple">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_model"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_price"
+            android:id="@+id/inputLayoutPrice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -66,13 +67,14 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/input_model"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutModel"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/purple"
             android:textColorHint="@color/gray"
             android:hint="@string/price">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -80,7 +82,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
@@ -89,7 +91,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/input_price"
+            app:layout_constraintTop_toBottomOf="@+id/inputLayoutPrice"
             app:layout_constraintVertical_bias="1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,6 +1,6 @@
 package com.example.orgs.model
 
-class Cars(
+data class Car(
     val name: String,
     val modelCar: String,
     val price: String,

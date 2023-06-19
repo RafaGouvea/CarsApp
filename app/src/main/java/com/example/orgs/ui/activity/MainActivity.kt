@@ -6,33 +6,29 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
+import com.example.orgs.dao.ProductsDao
 import com.example.orgs.ui.adapter.ListaCarrosAdapter
-import com.example.orgs.model.Cars
+import com.example.orgs.model.Car
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
+    private val dao = ProductsDao()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+    }
 
+    override fun onResume() {
+        super.onResume()
+        setContentView(R.layout.activity_main)
         initView()
         navigateFormularioCarros()
+
     }
 
     private fun initView() {
         val recycleView: RecyclerView = findViewById(R.id.recycleView)
-        recycleView.adapter = ListaCarrosAdapter(context = this, cars = listOf(
-            Cars(
-                "Jetta",
-                "Volkswagen",
-                "R$54.964,35"
-            ),
-            Cars(
-                "Compass",
-                "Jeep",
-                "R$120.234,00",
-            ),
-        ))
+        recycleView.adapter = ListaCarrosAdapter(context = this, cars = dao.showCars())
         recycleView.layoutManager = LinearLayoutManager(this)
     }
 

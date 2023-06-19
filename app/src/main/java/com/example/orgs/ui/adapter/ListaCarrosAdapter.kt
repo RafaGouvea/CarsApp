@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
-import com.example.orgs.model.Cars
+import com.example.orgs.model.Car
 
 class ListaCarrosAdapter(
     private val context: Context,
-    private val cars: List<Cars>
+    private val cars: List<Car>
 ) : RecyclerView.Adapter<ListaCarrosAdapter.ViewHolder>() {
 
 
@@ -31,7 +31,7 @@ class ListaCarrosAdapter(
     }
 
     class ViewHolder (view: View): RecyclerView.ViewHolder(view){
-        fun vincula(car: Cars) {
+        fun vincula(car: Car) {
 
             val name = itemView.findViewById<TextView>(R.id.tv_name)
             val model = itemView.findViewById<TextView>(R.id.tv_model)
