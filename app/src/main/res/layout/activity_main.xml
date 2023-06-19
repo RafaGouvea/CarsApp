@@ -16,4 +16,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/produtos_carros"/>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/gray"
+        android:layout_margin="16dp"
+        android:focusable="true" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
