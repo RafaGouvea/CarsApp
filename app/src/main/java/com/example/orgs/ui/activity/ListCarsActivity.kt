@@ -8,35 +8,38 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
 import com.example.orgs.dao.ProductsDao
 import com.example.orgs.ui.adapter.ListaCarrosAdapter
-import com.example.orgs.model.Car
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class ListCarsActivity : AppCompatActivity(R.layout.activity_list_cars) {
     private val dao = ProductsDao()
+    private val adapter = ListaCarrosAdapter(context = this, cars = dao.showCars())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        configRecycleView()
     }
 
     override fun onResume() {
         super.onResume()
-        setContentView(R.layout.activity_main)
-        initView()
-        navigateFormularioCarros()
-
+        adapter.refresh(dao.showCars())
+        configFab()
     }
 
-    private fun initView() {
+    private fun configRecycleView() {
         val recycleView: RecyclerView = findViewById(R.id.recycleView)
-        recycleView.adapter = ListaCarrosAdapter(context = this, cars = dao.showCars())
+        recycleView.adapter = adapter
         recycleView.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun navigateFormularioCarros() {
+    private fun configFab() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener{
-            val intent = Intent(this, FormularioCarrosActivity::class.java)
-            startActivity(intent)
+            taskClickFab()
         }
+    }
+
+    private fun taskClickFab() {
+        val intent = Intent(this, FormCarsActivity::class.java)
+        startActivity(intent)
     }
 }
