@@ -9,8 +9,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".ui.activity.FormCarsActivity"
-        android:background="@color/white">
+        android:background="@color/white"
+        tools:context=".ui.activity.FormCarsActivity">
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -20,14 +20,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="80dp"
             android:layout_marginEnd="16dp"
+            android:hint="@string/car_name"
+            android:textColorHint="@color/gray"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:boxBackgroundMode="outline"
-            android:textColorHint="@color/gray"
-            android:hint="@string/name"
-            app:boxStrokeColor="@color/purple"
-           >
+            app:layout_constraintTop_toTopOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_name"
@@ -43,13 +42,13 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:hint="@string/car_model"
+            android:textColorHint="@color/gray"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="@color/purple"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutName"
-            app:boxBackgroundMode="outline"
-            android:textColorHint="@color/gray"
-            android:hint="@string/model"
-            app:boxStrokeColor="@color/purple">
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutName">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_model"
@@ -65,34 +64,33 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/inputLayoutModel"
+            android:hint="@string/car_price"
+            android:textColorHint="@color/gray"
             app:boxBackgroundMode="outline"
             app:boxStrokeColor="@color/purple"
-            android:textColorHint="@color/gray"
-            android:hint="@string/price">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/inputLayoutModel">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
-                />
+                android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/button_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="@string/register"
             android:backgroundTint="@color/purple"
+            android:text="@string/register"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/inputLayoutPrice"
-            app:layout_constraintVertical_bias="1"/>
+            app:layout_constraintVertical_bias="1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

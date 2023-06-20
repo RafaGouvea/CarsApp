@@ -7,15 +7,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
 import com.example.orgs.dao.ProductsDao
+import com.example.orgs.databinding.ActivityListCarsBinding
 import com.example.orgs.ui.adapter.ListaCarrosAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class ListCarsActivity : AppCompatActivity(R.layout.activity_list_cars) {
+class ListCarsActivity : AppCompatActivity() {
+
+    private val binding by lazy {
+        ActivityListCarsBinding.inflate(layoutInflater)
+    }
     private val dao = ProductsDao()
     private val adapter = ListaCarrosAdapter(context = this, cars = dao.showCars())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(binding.root)
         initRecycleView()
     }
 
@@ -26,14 +32,14 @@ class ListCarsActivity : AppCompatActivity(R.layout.activity_list_cars) {
     }
 
     private fun initRecycleView() {
-        val recycleView = findViewById<RecyclerView>(R.id.recycleView)
+        val recycleView = binding.recycleView
         recycleView.adapter = adapter
         recycleView.layoutManager = LinearLayoutManager(this)
     }
 
     private fun navigateFormularioCarros() {
-        val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
-        fab.setOnClickListener{
+        val fab = binding.floatingActionButton
+        fab.setOnClickListener {
             taskFab()
         }
     }

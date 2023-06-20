@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Orgs</string>
-    <string name="model">Model</string>
-    <string name="price">Price</string>
-    <string name="name">Name</string>
+    <string name="car_model">Car model</string>
+    <string name="car_price">Car price</string>
+    <string name="car_name">Car name</string>
     <string name="register">Register</string>
 </resources>

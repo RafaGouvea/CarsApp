@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.orgs.R
+import com.example.orgs.databinding.CarsListBinding
 import com.example.orgs.model.Car
+import com.example.orgs.ui.activity.ListCarsActivity
 
 class ListaCarrosAdapter(
     private val context: Context,
@@ -17,9 +19,9 @@ class ListaCarrosAdapter(
     private val cars = cars.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val inflater = LayoutInflater.from(context)
-        val view = inflater.inflate(R.layout.cars_list, parent, false)
-        return ViewHolder(view)
+        val binding = CarsListBinding.inflate(LayoutInflater.from(context), parent, false)
+
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -37,17 +39,15 @@ class ListaCarrosAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder (view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(binding: CarsListBinding) : RecyclerView.ViewHolder(binding.root) {
+        val name = binding.carsListName
+        val model = binding.carsListModel
+        val price = binding.carsListPrice
+
         fun vincula(car: Car) {
-            val name = itemView.findViewById<TextView>(R.id.cars_list_name)
-            val model = itemView.findViewById<TextView>(R.id.cars_list_model)
-            val value = itemView.findViewById<TextView>(R.id.cars_list_price)
             name.text = car.name
             model.text = car.modelCar
-            value.text = car.price
-
+            price.text = car.price
         }
-
     }
-
 }
