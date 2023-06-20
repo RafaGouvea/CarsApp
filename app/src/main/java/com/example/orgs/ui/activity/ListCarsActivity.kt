@@ -16,29 +16,29 @@ class ListCarsActivity : AppCompatActivity(R.layout.activity_list_cars) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        configRecycleView()
+        initRecycleView()
     }
 
     override fun onResume() {
         super.onResume()
-        adapter.refresh(dao.showCars())
-        configFab()
+        adapter.notifyChanged(dao.showCars())
+        navigateFormularioCarros()
     }
 
-    private fun configRecycleView() {
-        val recycleView: RecyclerView = findViewById(R.id.recycleView)
+    private fun initRecycleView() {
+        val recycleView = findViewById<RecyclerView>(R.id.recycleView)
         recycleView.adapter = adapter
         recycleView.layoutManager = LinearLayoutManager(this)
     }
 
-    private fun configFab() {
+    private fun navigateFormularioCarros() {
         val fab = findViewById<FloatingActionButton>(R.id.floatingActionButton)
         fab.setOnClickListener{
-            taskClickFab()
+            taskFab()
         }
     }
 
-    private fun taskClickFab() {
+    private fun taskFab() {
         val intent = Intent(this, FormCarsActivity::class.java)
         startActivity(intent)
     }

@@ -31,23 +31,23 @@ class ListaCarrosAdapter(
         return cars.size
     }
 
-    fun refresh(cars: List<Car>) {
+    fun notifyChanged(cars: List<Car>) {
         this.cars.clear()
         this.cars.addAll(cars)
         notifyDataSetChanged()
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class ViewHolder (view: View): RecyclerView.ViewHolder(view){
         fun vincula(car: Car) {
-
             val name = itemView.findViewById<TextView>(R.id.cars_list_name)
             val model = itemView.findViewById<TextView>(R.id.cars_list_model)
             val value = itemView.findViewById<TextView>(R.id.cars_list_price)
-
             name.text = car.name
             model.text = car.modelCar
             value.text = car.price
 
         }
+
     }
+
 }

@@ -2,7 +2,6 @@ package com.example.orgs.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import com.example.orgs.R
 import com.example.orgs.dao.ProductsDao
@@ -20,14 +19,13 @@ class FormCarsActivity : AppCompatActivity() {
         val btnRegister = findViewById<Button>(R.id.btn_register)
         val productsDao = ProductsDao()
         btnRegister.setOnClickListener {
-            val newCar = createCar()
-            productsDao.addCar(newCar)
-            Log.i("###", "btnAddCar: ${productsDao.showCars()}")
+            val cars = newCar()
+            productsDao.addCar(cars)
             finish()
         }
     }
 
-    private fun createCar(): Car {
+    private fun newCar(): Car {
         val name = findViewById<TextInputEditText>(R.id.input_name)
         val nameTxt = name.text.toString()
         val model = findViewById<TextInputEditText>(R.id.input_model)
