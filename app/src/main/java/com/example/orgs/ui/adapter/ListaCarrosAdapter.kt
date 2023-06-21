@@ -10,6 +10,9 @@ import com.example.orgs.R
 import com.example.orgs.databinding.CarsListBinding
 import com.example.orgs.model.Car
 import com.example.orgs.ui.activity.ListCarsActivity
+import java.math.BigDecimal
+import java.text.NumberFormat
+import java.util.Locale
 
 class ListaCarrosAdapter(
     private val context: Context,
@@ -19,8 +22,8 @@ class ListaCarrosAdapter(
     private val cars = cars.toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = CarsListBinding.inflate(LayoutInflater.from(context), parent, false)
-
+        val inflater = LayoutInflater.from(context)
+        val binding = CarsListBinding.inflate(inflater, parent, false)
         return ViewHolder(binding)
     }
 
@@ -39,15 +42,22 @@ class ListaCarrosAdapter(
         notifyDataSetChanged()
     }
 
-    class ViewHolder(binding: CarsListBinding) : RecyclerView.ViewHolder(binding.root) {
-        val name = binding.carsListName
-        val model = binding.carsListModel
-        val price = binding.carsListPrice
-
+    class ViewHolder(private val binding: CarsListBinding) : RecyclerView.ViewHolder(binding.root) {
         fun vincula(car: Car) {
+            val name = binding.carsListName
             name.text = car.name
+
+            val model = binding.carsListModel
             model.text = car.modelCar
-            price.text = car.price
+
+            val price = binding.carsListPrice
+            val realPrice = formatToReal(car.price)
+            price.text = realPrice
+        }
+
+        private fun formatToReal(price: BigDecimal): String {
+            val formater = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
+            return formater.format(price)
         }
     }
 }

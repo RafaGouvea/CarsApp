@@ -1,12 +1,11 @@
 package com.example.orgs.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.orgs.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.orgs.dao.ProductsDao
 import com.example.orgs.databinding.ActivityFormCarsBinding
 import com.example.orgs.model.Car
-import com.google.android.material.textfield.TextInputEditText
+import java.math.BigDecimal
 
 class FormCarsActivity : AppCompatActivity() {
 
@@ -17,10 +16,10 @@ class FormCarsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        btnAddCar()
+        btnSaveCar()
     }
 
-    private fun btnAddCar() {
+    private fun btnSaveCar() {
         val btnRegister = binding.buttonRegister
         val productsDao = ProductsDao()
         btnRegister.setOnClickListener {
@@ -36,7 +35,12 @@ class FormCarsActivity : AppCompatActivity() {
         val modelInput = binding.inputModel
         val model = modelInput.text.toString()
         val priceInput = binding.inputPrice
-        val price = priceInput.text.toString()
+        val priceText = priceInput.text.toString()
+        val price =  if (priceText.isBlank()) {
+            BigDecimal.ZERO
+        } else {
+            BigDecimal(priceText)
+        }
 
         return Car(
             name = name,
