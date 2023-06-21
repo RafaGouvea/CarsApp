@@ -4,4 +4,5 @@
     <string name="car_price">Car price</string>
     <string name="car_name">Car name</string>
     <string name="register">Register</string>
+    <string name="todo">TODO</string>
 </resources>
