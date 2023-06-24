@@ -12,21 +12,30 @@
         android:background="@color/white"
         tools:context=".ui.activity.FormCarsActivity">
 
+        <ImageView
+            android:id="@+id/add_img_car"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/ic_launcher_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:contentDescription="@string/imageforms" />
+
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/inputLayoutName"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="80dp"
             android:layout_marginEnd="16dp"
             android:hint="@string/car_name"
-            android:textColorHint="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/purple"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/add_img_car">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/input_name"
@@ -43,9 +52,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:hint="@string/car_model"
-            android:textColorHint="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/purple"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutName">
@@ -65,9 +72,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:hint="@string/car_price"
-            android:textColorHint="@color/gray"
-            app:boxBackgroundMode="outline"
-            app:boxStrokeColor="@color/purple"
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/inputLayoutModel">
@@ -79,13 +84,16 @@
                 android:inputType="number" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_register"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:backgroundTint="@color/purple"
+            android:fontFamily="@font/montserrat_bold"
             android:text="@string/register"
+            android:textSize="16sp"
+            android:background="@drawable/background_button"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -15,11 +15,7 @@ class ProductsDao {
 
     companion object {
         private val cars = mutableListOf<Car>(
-            Car(
-                name = "Jetta",
-                modelCar = "Volkswagem",
-                price = BigDecimal("60.390")
-            )
+
         )
     }
 }

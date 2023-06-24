@@ -5,4 +5,7 @@
     <string name="car_name">Car name</string>
     <string name="register">Register</string>
     <string name="todo">TODO</string>
+    <string name="imageforms">ImageForms</string>
+    <string name="add">ADD</string>
+    <string name="add_imagem_url">Add imagem URL</string>
 </resources>

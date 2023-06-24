@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.example.orgs.R
 import com.example.orgs.databinding.CarsListBinding
 import com.example.orgs.model.Car
@@ -53,6 +54,8 @@ class ListaCarrosAdapter(
             val price = binding.carsListPrice
             val realPrice = formatToReal(car.price)
             price.text = realPrice
+
+            binding.imageView.load(car.imgItem)
         }
 
         private fun formatToReal(price: BigDecimal): String {
