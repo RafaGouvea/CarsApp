@@ -1,6 +1,7 @@
 package com.example.orgs.ui.adapter
 
 import android.content.Context
+import android.opengl.Visibility
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.example.orgs.R
 import com.example.orgs.databinding.CarsListBinding
+import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
 import com.example.orgs.ui.activity.ListCarsActivity
 import java.math.BigDecimal
@@ -55,7 +57,18 @@ class ListaCarrosAdapter(
             val realPrice = formatToReal(car.price)
             price.text = realPrice
 
-            binding.imageView.load(car.imgItem)
+            binding.imageView.loadImgView(car.imgItem)
+
+            //EXEMPLO PARA ESCONDER VIEW//
+//            val visib = if (binding.imageView != null){
+//                View.VISIBLE
+//            }else{
+//                View.INVISIBLE
+//                View.GONE
+//            }
+//            binding.imageView.visibility = visib
+
+
         }
 
         private fun formatToReal(price: BigDecimal): String {

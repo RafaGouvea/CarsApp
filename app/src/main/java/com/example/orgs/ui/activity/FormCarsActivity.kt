@@ -8,7 +8,9 @@ import com.example.orgs.R
 import com.example.orgs.dao.ProductsDao
 import com.example.orgs.databinding.ActivityFormCarsBinding
 import com.example.orgs.databinding.FormImagemBinding
+import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
+import com.example.orgs.ui.dialog.FormularioImgDialog
 import java.math.BigDecimal
 
 class FormCarsActivity : AppCompatActivity() {
@@ -21,28 +23,16 @@ class FormCarsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        btnSaveCar()
         btnAddImageCar()
+        btnSaveCar()
     }
 
     private fun btnAddImageCar() {
         binding.addImgCar.setOnClickListener {
-            val bindingImageCar = FormImagemBinding.inflate(layoutInflater)
-            bindingImageCar.buttonAddImagem.setOnClickListener {
-                url = bindingImageCar.editTextUrl.text.toString()
-                bindingImageCar.imgForms.load(url)
+            FormularioImgDialog(this).show{
+                url = it
+                binding.addImgCar.loadImgView(url)
             }
-
-            AlertDialog.Builder(this)
-                .setView(bindingImageCar.root)
-                .setPositiveButton("Confirm") { _, _ ->
-                    binding.addImgCar.load(url)
-
-                }
-                .setNegativeButton("Cancel") { _, _ ->
-
-                }
-                .show()
         }
     }
 
