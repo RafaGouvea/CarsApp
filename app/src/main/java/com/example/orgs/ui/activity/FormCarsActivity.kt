@@ -29,7 +29,7 @@ class FormCarsActivity : AppCompatActivity() {
 
     private fun btnAddImageCar() {
         binding.addImgCar.setOnClickListener {
-            FormularioImgDialog(this).show{
+            FormularioImgDialog(this).show(url){
                 url = it
                 binding.addImgCar.loadImgView(url)
             }
