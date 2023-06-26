@@ -8,4 +8,5 @@
     <string name="imageforms">ImageForms</string>
     <string name="add">ADD</string>
     <string name="add_imagem_url">Add imagem URL</string>
+    <string name="add_image">Add image</string>
 </resources>

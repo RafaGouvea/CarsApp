@@ -28,7 +28,7 @@
         android:focusable="true"
         android:text="@string/add"
         app:icon="@drawable/baseline_add"
-        android:backgroundTint="@color/purple"
+        android:backgroundTint="@color/colorSecondaryVariant"
         android:fontFamily="@font/montserrat_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

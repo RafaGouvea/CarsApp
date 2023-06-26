@@ -1,6 +1,7 @@
 package com.example.orgs.ui.activity
 
 import android.os.Bundle
+import android.widget.Toolbar
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
@@ -23,6 +24,7 @@ class FormCarsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = "Cadastro de Carros"
         btnAddImageCar()
         btnSaveCar()
     }
