@@ -3,6 +3,7 @@ package com.example.orgs.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orgs.dao.ProductsDao
 import com.example.orgs.databinding.ActivityListCarsBinding
@@ -32,12 +33,7 @@ class ListCarsActivity : AppCompatActivity() {
         val recycleView = binding.recycleView
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
-
-        adapter.clickedItem = {
-            val intent = Intent(this, DetailCarActivity::class.java).apply {
-                putExtra("key", it)
-            }
-            startActivity(intent)
+        adapter.onItemClicked = {
         }
     }
 

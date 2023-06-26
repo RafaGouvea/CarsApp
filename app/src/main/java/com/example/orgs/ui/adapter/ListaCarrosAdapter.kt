@@ -13,45 +13,10 @@ import com.example.orgs.model.Car
 class ListaCarrosAdapter(
     private val context: Context,
     cars: List<Car>,
-    var clickedItem: (car: Car) -> Unit = {}
+    var onItemClicked: (car: Car) -> Unit = {}
 ) : RecyclerView.Adapter<ListaCarrosAdapter.ViewHolder>() {
+
     private val cars = cars.toMutableList()
-
-
-    inner class ViewHolder(private val binding: CarsListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        private lateinit var car: Car
-
-        init {
-            itemView.setOnClickListener {
-                if (::car.isInitialized) {
-                    clickedItem(car)
-                } else {
-                    Log.i("###", "nao funfou")
-                }
-            }
-        }
-
-        fun vincula(car: Car) {
-            val name = binding.carsListName
-            name.text = car.name
-            val model = binding.carsListModel
-            model.text = car.modelCar
-            val price = binding.carsListPrice
-            val realBrazilianPrice: String = car.price.formatToBrazilianReal()
-            price.text = realBrazilianPrice
-            binding.imageView.loadImgView(car.imgItem)
-
-            //EXEMPLO PARA ESCONDER VIEW//
-//            val visib = if (binding.imageView != null){
-//                View.VISIBLE
-//            }else{
-//                View.INVISIBLE
-//                View.GONE
-//            }
-//            binding.imageView.visibility = visib
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -72,5 +37,32 @@ class ListaCarrosAdapter(
         this.cars.clear()
         this.cars.addAll(cars)
         notifyDataSetChanged()
+    }
+
+    inner class ViewHolder(private val binding: CarsListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        private lateinit var car: Car
+
+        init {
+            itemView.setOnClickListener {
+                Log.i("ListaProdutosAdapter", "clicando no item")
+                if (::car.isInitialized) {
+                    onItemClicked(car)
+                }
+            }
+        }
+
+        fun vincula(car: Car) {
+            val name = binding.carsListName
+            name.text = car.name
+            val model = binding.carsListModel
+            model.text = car.modelCar
+            val price = binding.carsListPrice
+            val realBrazilianPrice: String = car.price.formatToBrazilianReal()
+            price.text = realBrazilianPrice
+            binding.imageView.loadImgView(car.imgItem)
+
+        }
     }
 }
