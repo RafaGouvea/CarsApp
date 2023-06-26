@@ -1,28 +1,57 @@
 package com.example.orgs.ui.adapter
 
 import android.content.Context
-import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.example.orgs.R
 import com.example.orgs.databinding.CarsListBinding
+import com.example.orgs.extensions.formatToBrazilianReal
 import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
-import com.example.orgs.ui.activity.ListCarsActivity
-import java.math.BigDecimal
-import java.text.NumberFormat
-import java.util.Locale
 
 class ListaCarrosAdapter(
     private val context: Context,
-    cars: List<Car>
+    cars: List<Car>,
+    var clickedItem: (car: Car) -> Unit = {}
 ) : RecyclerView.Adapter<ListaCarrosAdapter.ViewHolder>() {
-
     private val cars = cars.toMutableList()
+
+
+    inner class ViewHolder(private val binding: CarsListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        private lateinit var car: Car
+
+        init {
+            itemView.setOnClickListener {
+                if (::car.isInitialized) {
+                    clickedItem(car)
+                } else {
+                    Log.i("###", "nao funfou")
+                }
+            }
+        }
+
+        fun vincula(car: Car) {
+            val name = binding.carsListName
+            name.text = car.name
+            val model = binding.carsListModel
+            model.text = car.modelCar
+            val price = binding.carsListPrice
+            val realBrazilianPrice: String = car.price.formatToBrazilianReal()
+            price.text = realBrazilianPrice
+            binding.imageView.loadImgView(car.imgItem)
+
+            //EXEMPLO PARA ESCONDER VIEW//
+//            val visib = if (binding.imageView != null){
+//                View.VISIBLE
+//            }else{
+//                View.INVISIBLE
+//                View.GONE
+//            }
+//            binding.imageView.visibility = visib
+        }
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(context)
@@ -43,37 +72,5 @@ class ListaCarrosAdapter(
         this.cars.clear()
         this.cars.addAll(cars)
         notifyDataSetChanged()
-    }
-
-    class ViewHolder(private val binding: CarsListBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun vincula(car: Car) {
-            val name = binding.carsListName
-            name.text = car.name
-
-            val model = binding.carsListModel
-            model.text = car.modelCar
-
-            val price = binding.carsListPrice
-            val realPrice = formatToReal(car.price)
-            price.text = realPrice
-
-            binding.imageView.loadImgView(car.imgItem)
-
-            //EXEMPLO PARA ESCONDER VIEW//
-//            val visib = if (binding.imageView != null){
-//                View.VISIBLE
-//            }else{
-//                View.INVISIBLE
-//                View.GONE
-//            }
-//            binding.imageView.visibility = visib
-
-
-        }
-
-        private fun formatToReal(price: BigDecimal): String {
-            val formater = NumberFormat.getCurrencyInstance(Locale("pt", "br"))
-            return formater.format(price)
-        }
     }
 }
