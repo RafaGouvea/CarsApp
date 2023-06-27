@@ -19,21 +19,17 @@ class DetailCarActivity : AppCompatActivity() {
     }
 
     private fun loadProduct() {
-        intent.getParcelableExtra<Car>("key")?.let {
+        intent.getParcelableExtra<Car>("KEY_CAR")?.let {
             loadFields(it)
         } ?: finish()
     }
 
     private fun loadFields(car: Car) {
-
-        with(binding){
+        with(binding) {
             this.detailCarImageView.loadImgView(car.imgItem)
             this.detailCarTvPrice.text = car.price.formatToBrazilianReal()
             this.detailCarTvName.text = car.name
             this.detailCarTvCarModel.text = car.modelCar
         }
-
     }
-
-
 }

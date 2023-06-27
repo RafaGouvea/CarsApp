@@ -41,19 +41,11 @@ class ListaCarrosAdapter(
 
     inner class ViewHolder(private val binding: CarsListBinding) :
         RecyclerView.ViewHolder(binding.root) {
-
-        private lateinit var car: Car
-
-        init {
-            itemView.setOnClickListener {
-                Log.i("ListaProdutosAdapter", "clicando no item")
-                if (::car.isInitialized) {
-                    onItemClicked(car)
-                }
-            }
-        }
-
         fun vincula(car: Car) {
+            binding.root.setOnClickListener {
+                    onItemClicked(car)
+            }
+
             val name = binding.carsListName
             name.text = car.name
             val model = binding.carsListModel
@@ -62,7 +54,6 @@ class ListaCarrosAdapter(
             val realBrazilianPrice: String = car.price.formatToBrazilianReal()
             price.text = realBrazilianPrice
             binding.imageView.loadImgView(car.imgItem)
-
         }
     }
 }

@@ -34,6 +34,10 @@ class ListCarsActivity : AppCompatActivity() {
         recycleView.layoutManager = LinearLayoutManager(this)
         recycleView.adapter = adapter
         adapter.onItemClicked = {
+            val intent = Intent(this, DetailCarActivity::class.java).apply {
+                putExtra("KEY_CAR", it)
+            }
+            startActivity(intent)
         }
     }
 
