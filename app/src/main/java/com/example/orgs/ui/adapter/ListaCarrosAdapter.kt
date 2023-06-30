@@ -12,7 +12,7 @@ import com.example.orgs.model.Car
 
 class ListaCarrosAdapter(
     private val context: Context,
-    cars: List<Car>,
+    cars: List<Car> = emptyList(),
     var onItemClicked: (car: Car) -> Unit = {}
 ) : RecyclerView.Adapter<ListaCarrosAdapter.ViewHolder>() {
 

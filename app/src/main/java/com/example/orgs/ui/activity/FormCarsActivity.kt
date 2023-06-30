@@ -1,14 +1,9 @@
 package com.example.orgs.ui.activity
 
 import android.os.Bundle
-import android.widget.Toolbar
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import coil.load
-import com.example.orgs.R
-import com.example.orgs.dao.ProductsDao
+import com.example.orgs.database.AppDataBase
 import com.example.orgs.databinding.ActivityFormCarsBinding
-import com.example.orgs.databinding.FormImagemBinding
 import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
 import com.example.orgs.ui.dialog.FormularioImgDialog
@@ -31,7 +26,7 @@ class FormCarsActivity : AppCompatActivity() {
 
     private fun btnAddImageCar() {
         binding.addImgCar.setOnClickListener {
-            FormularioImgDialog(this).show(url){
+            FormularioImgDialog(this).show(url) {
                 url = it
                 binding.addImgCar.loadImgView(url)
             }
@@ -40,10 +35,11 @@ class FormCarsActivity : AppCompatActivity() {
 
     private fun btnSaveCar() {
         val btnRegister = binding.buttonRegister
-        val productsDao = ProductsDao()
+        val db = AppDataBase.instance(this)
+        val carsDao = db.carDao()
         btnRegister.setOnClickListener {
             val cars = newCar()
-            productsDao.addCar(cars)
+            carsDao.insertAll(cars)
             finish()
         }
     }
