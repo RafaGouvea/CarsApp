@@ -8,7 +8,7 @@ import androidx.room.TypeConverters
 import com.example.orgs.database.dao.CarDao
 import com.example.orgs.model.Car
 
-@Database(entities = [Car::class], version = 1)
+@Database(entities = [Car::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDataBase: RoomDatabase() {
     abstract fun carDao(): CarDao
