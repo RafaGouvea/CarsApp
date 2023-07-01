@@ -1,30 +1,40 @@
 package com.example.orgs.ui.activity
 
 import android.os.Bundle
-import android.view.Menu
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import com.example.orgs.R
 import com.example.orgs.database.AppDataBase
 import com.example.orgs.databinding.ActivityFormCarsBinding
 import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
 import com.example.orgs.ui.dialog.FormularioImgDialog
-import com.google.android.material.appbar.MaterialToolbar
 import java.math.BigDecimal
 
 class FormCarsActivity : AppCompatActivity() {
 
-    private val binding by lazy {
-        ActivityFormCarsBinding.inflate(layoutInflater)
-    }
+    private val binding by lazy { ActivityFormCarsBinding.inflate(layoutInflater) }
     private var url: String? = null
+    private var carId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        title = "Cadastrar Produto"
         btnAddImageCar()
         btnSaveCar()
+        editCar()
+
+    }
+
+    private fun editCar() {
+        intent.getParcelableExtra<Car>("KEY_CAR")?.let {
+            title = "Editar Produto"
+            url = it.imgItem
+            carId = it.id
+            binding.addImgCar.loadImgView(it.imgItem)
+            binding.inputName.setText(it.name)
+            binding.inputModel.setText(it.modelCar)
+            binding.inputPrice.setText(it.price.toPlainString())
+        }
     }
 
     private fun btnAddImageCar() {
@@ -42,7 +52,11 @@ class FormCarsActivity : AppCompatActivity() {
         val carsDao = db.carDao()
         btnRegister.setOnClickListener {
             val cars = newCar()
-            carsDao.insertAll(cars)
+            if(carId > 0){
+                carsDao.update(cars)
+            }else {
+                carsDao.save(cars)
+            }
             finish()
         }
     }
@@ -61,6 +75,7 @@ class FormCarsActivity : AppCompatActivity() {
         }
 
         return Car(
+            id = carId,
             name = name,
             modelCar = model,
             price = price,

@@ -6,14 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.orgs.database.AppDataBase
 import com.example.orgs.databinding.ActivityListCarsBinding
+import com.example.orgs.model.Car
 import com.example.orgs.ui.adapter.ListaCarrosAdapter
 
 class ListCarsActivity : AppCompatActivity() {
 
-    private val binding by lazy {
-        ActivityListCarsBinding.inflate(layoutInflater)
-    }
-
+    private val binding by lazy {ActivityListCarsBinding.inflate(layoutInflater)}
     private val adapter = ListaCarrosAdapter(context = this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
