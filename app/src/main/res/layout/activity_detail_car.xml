@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    tools:context=".ui.activity.DetailCarActivity">
+    android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:context=".ui.activity.DetailCarActivity">
 
         <ImageView
             android:id="@+id/detail_car_image_view"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:contentDescription="@string/imageforms"
+            android:contentDescription="@string/ImageForms"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             app:layout_constraintEnd_toEndOf="parent"
