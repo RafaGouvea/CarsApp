@@ -3,6 +3,7 @@ package com.example.orgs.ui.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.orgs.database.AppDataBase
+import com.example.orgs.database.dao.CarDao
 import com.example.orgs.databinding.ActivityFormCarsBinding
 import com.example.orgs.extensions.loadImgView
 import com.example.orgs.model.Car
@@ -14,6 +15,10 @@ class FormCarsActivity : AppCompatActivity() {
     private val binding by lazy { ActivityFormCarsBinding.inflate(layoutInflater) }
     private var url: String? = null
     private var carId = 0
+    private val carDao: CarDao by lazy {
+        val db = AppDataBase.instance(this)
+        db.carDao()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,19 +27,26 @@ class FormCarsActivity : AppCompatActivity() {
         btnAddImageCar()
         btnSaveCar()
         editCar()
+    }
 
+    override fun onResume() {
+        super.onResume()
+        title = "Editar Produto"
+        carDao.searchId(carId)?.let {
+            loadFilds(it)
+        }
+    }
+
+    private fun loadFilds(car: Car) {
+        url = car.imgItem
+        binding.addImgCar.loadImgView(car.imgItem)
+        binding.inputName.setText(car.name)
+        binding.inputModel.setText(car.modelCar)
+        binding.inputPrice.setText(car.price.toPlainString())
     }
 
     private fun editCar() {
-        intent.getParcelableExtra<Car>("KEY_CAR")?.let {
-            title = "Editar Produto"
-            url = it.imgItem
-            carId = it.id
-            binding.addImgCar.loadImgView(it.imgItem)
-            binding.inputName.setText(it.name)
-            binding.inputModel.setText(it.modelCar)
-            binding.inputPrice.setText(it.price.toPlainString())
-        }
+        carId = intent.getIntExtra("KEY_CAR_ID", 0)
     }
 
     private fun btnAddImageCar() {
@@ -48,15 +60,10 @@ class FormCarsActivity : AppCompatActivity() {
 
     private fun btnSaveCar() {
         val btnRegister = binding.buttonRegister
-        val db = AppDataBase.instance(this)
-        val carsDao = db.carDao()
+
         btnRegister.setOnClickListener {
             val cars = newCar()
-            if(carId > 0){
-                carsDao.update(cars)
-            }else {
-                carsDao.save(cars)
-            }
+            carDao.save(cars)
             finish()
         }
     }
