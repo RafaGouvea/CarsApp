@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_filters"
+        app:showAsAction="ifRoom"
+        android:title="Filter"
+        android:icon="@drawable/ic_filter">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_filter_car_name_ascending"
+                app:showAsAction="never"
+                android:title="Ascending name" />
+
+            <item
+                android:id="@+id/menu_filter_car_name_descending"
+                app:showAsAction="never"
+                android:title="Descending name " />
+
+            <item
+                android:id="@+id/menu_filter_model_car_ascending"
+                app:showAsAction="never"
+                android:title="Ascending description" />
+
+            <item
+                android:id="@+id/menu_filter_model_car_desccending"
+                app:showAsAction="never"
+                android:title="Descending description" />
+
+            <item
+                android:id="@+id/menu_filter_car_price_ascending"
+                app:showAsAction="never"
+                android:title="Ascending price" />
+
+            <item
+                android:id="@+id/menu_filter_car_price_descending"
+                app:showAsAction="never"
+                android:title="Descending price"/>
+
+            <item
+                android:id="@+id/menu_filter_no_filter"
+                app:showAsAction="never"
+                android:title="No filters"/>
+
+        </menu>
+    </item>
+</menu>

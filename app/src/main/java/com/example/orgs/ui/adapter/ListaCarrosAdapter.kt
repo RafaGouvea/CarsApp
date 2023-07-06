@@ -1,8 +1,6 @@
 package com.example.orgs.ui.adapter
 
-import android.app.ActionBar
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +23,24 @@ class ListaCarrosAdapter(
         return ViewHolder(binding)
     }
 
+    inner class ViewHolder(private val binding: CarsListBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun vincula(car: Car) {
+            binding.root.setOnClickListener {
+                onItemClicked(car)
+            }
+
+            val name = binding.carsListName
+            name.text = car.name
+            val model = binding.carsListModel
+            model.text = car.modelCar
+            val price = binding.carsListPrice
+            val realBrazilianPrice: String = car.price.formatToBrazilianReal()
+            price.text = realBrazilianPrice
+            binding.imageView.loadImgView(car.imgItem)
+        }
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val car = cars[position]
         holder.vincula(car)
@@ -40,21 +56,34 @@ class ListaCarrosAdapter(
         notifyDataSetChanged()
     }
 
-    inner class ViewHolder(private val binding: CarsListBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun vincula(car: Car) {
-            binding.root.setOnClickListener {
-                    onItemClicked(car)
-            }
+    inner class filters(){
+        fun sortByCarNameAscending(){
+            cars.sortBy { it.name }
+            notifyDataSetChanged()
+        }
+        fun sortByCarNameDescending(){
+            cars.sortByDescending { it.name }
+            notifyDataSetChanged()
+        }
 
-            val name = binding.carsListName
-            name.text = car.name
-            val model = binding.carsListModel
-            model.text = car.modelCar
-            val price = binding.carsListPrice
-            val realBrazilianPrice: String = car.price.formatToBrazilianReal()
-            price.text = realBrazilianPrice
-            binding.imageView.loadImgView(car.imgItem)
+        fun sortByModelCarAscending() {
+            cars.sortBy { it.modelCar }
+            notifyDataSetChanged()
+        }
+
+        fun sortByModelCarDescending() {
+            cars.sortByDescending { it.modelCar }
+            notifyDataSetChanged()
+        }
+
+        fun sortByAscedingCarPrice() {
+            cars.sortBy { it.price }
+            notifyDataSetChanged()
+        }
+
+        fun sortByDescedingCarPrice() {
+            cars.sortByDescending { it.price }
+            notifyDataSetChanged()
         }
     }
 }
